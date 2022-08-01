@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximun-scale=1.0, minimun-scale=1.0">
+        <title>Convertidor de divisas</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&family=Raleway:wght@300;400&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="estilos_divisas.css">
+    </head>
+
+    <body>
+        <div id="calc">
+            <h1>Convertidor de divisas</h1>
+            <div id="inic">
+                <p class="sub">Moneda inicial:</p>
+                <input id="m1"  type="number" placeholder="Importe" min="0">
+                
+                <select id="choose" onchange="convertir()">
+                    <option value="0">Elige el cambio...</option>
+                    <option value="1">Euros a Dólares</option>
+                    <option value="2">Dólares a Euros</option>
+                    <option value="3">Euros a Libras</option>
+                    <option value="4">Libras a Euros</option> 
+                </select>
+            </div>
+            <div class="result">
+                <p class="sub">Resultado:</p>
+                <p id="result">0.00</p>
+            </div>
+            <input id="boton" type="button" onClick="reset()" value="Limpiar">
+            <p class="nombre">Entrega Final -  Jeniffer Monroy</p>
+        </div>
+    
+    <script>
+        function convertir(){
+        var inicial=document.getElementById("m1").value;
+        var cambio=document.getElementById("choose").value;
+        var dolar= 1.012; //valor de 1€ en dólares
+        var libra= 0.840; //valor de 1€ en libras
+        var resultado; //Sin definir
+        if (cambio==0) {
+            alert("Selecciona un cambio de moneda"); //Opción "Elige el cambio...", no convierte ninguna
+            return false;
+        }
+        
+        //De euros a dólares
+        else if (cambio==1){
+        var resultado=inicial*dolar;
+        }
+
+        //De dólares a euros
+        else if (cambio==2){
+        var resultado=inicial/dolar;
+        }
+
+        //De euros a libras
+        else if (cambio==3){
+        var resultado=inicial*libra;
+        }
+
+        //De libras a euros
+        else if (cambio==4){
+        var resultado=inicial/libra;
+        }
+        return document.getElementById("result").innerHTML=resultado.toFixed(2);
+        }
+
+        function reset(){ 
+        document.getElementById("m1").value= "";
+        document.getElementById("result").innerHTML= "0.00";
+        }
+    </Script>
+    </body>
+</html>  
